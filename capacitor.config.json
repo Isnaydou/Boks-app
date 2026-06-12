@@ -1,0 +1,11 @@
+{
+  "appId": "com.vechtstijl.app",
+  "appName": "VECHTSTIJL",
+  "webDir": "dist",
+  "backgroundColor": "#060607",
+  "plugins": {
+    "SystemBars": {
+      "style": "DARK"
+    }
+  }
+}

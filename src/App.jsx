@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Capacitor } from "@capacitor/core";
 import {
   BatteryFull,
   BicepsFlexed,
@@ -32,6 +33,10 @@ import {
 /* ------------------------------------------------------------------ */
 
 const STORAGE_KEY = "vechtstijl:v1";
+
+// In the native Android app the real system status bar and gesture bar are
+// shown, so the mimicked web versions must stay hidden there.
+const IS_NATIVE = typeof window !== "undefined" && Capacitor.isNativePlatform();
 
 // Literal class strings per accent — Tailwind needs them spelled out.
 const ACCENTS = {
@@ -243,7 +248,10 @@ function Sheet({ open, onClose, title, children }) {
         onClick={onClose}
         className="absolute inset-0 animate-fade-in cursor-default bg-black/70"
       />
-      <div className="absolute inset-x-0 bottom-0 animate-sheet-up rounded-t-3xl border-t border-zinc-800 bg-zinc-950 pb-7 shadow-2xl">
+      <div
+        className="absolute inset-x-0 bottom-0 animate-sheet-up rounded-t-3xl border-t border-zinc-800 bg-zinc-950 shadow-2xl"
+        style={{ paddingBottom: "calc(1.75rem + env(safe-area-inset-bottom, 0px))" }}
+      >
         <div className="mx-auto mt-2.5 h-1 w-10 rounded-full bg-zinc-700" />
         <div className="flex items-center justify-between px-5 pb-2 pt-3">
           <h2 className="font-display text-xl tracking-wide text-white">{title}</h2>
@@ -520,7 +528,8 @@ export default function App() {
       <button
         onClick={openAddSport}
         aria-label="Sport toevoegen"
-        className="absolute bottom-7 right-5 z-30 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-red-700 text-white shadow-xl shadow-red-950/70 ring-1 ring-red-400/30 transition-transform active:scale-90"
+        style={{ bottom: "calc(1.75rem + env(safe-area-inset-bottom, 0px))" }}
+        className="absolute right-5 z-30 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-red-700 text-white shadow-xl shadow-red-950/70 ring-1 ring-red-400/30 transition-transform active:scale-90"
       >
         <Plus size={26} strokeWidth={2.6} />
       </button>
@@ -741,20 +750,29 @@ export default function App() {
         <div className="absolute -right-1 top-40 hidden h-20 w-1 rounded-r-md bg-zinc-700 lg:block" />
         <div className="absolute -right-1 top-64 hidden h-10 w-1 rounded-r-md bg-zinc-700 lg:block" />
 
-        {/* Phone shell */}
-        <div className="relative flex h-dvh w-full select-none flex-col overflow-hidden bg-zinc-950 lg:h-[896px] lg:max-h-[94vh] lg:w-[412px] lg:rounded-[1.9rem] lg:border-4 lg:border-zinc-800 lg:shadow-[0_0_90px_-20px_rgba(220,38,38,0.35)] lg:ring-1 lg:ring-zinc-700">
+        {/* Phone shell — safe-area padding keeps content clear of the real
+            system bars when Capacitor runs the app edge-to-edge on Android */}
+        <div
+          className="relative flex h-dvh w-full select-none flex-col overflow-hidden bg-zinc-950 lg:h-[896px] lg:max-h-[94vh] lg:w-[412px] lg:rounded-[1.9rem] lg:border-4 lg:border-zinc-800 lg:shadow-[0_0_90px_-20px_rgba(220,38,38,0.35)] lg:ring-1 lg:ring-zinc-700"
+          style={{
+            paddingTop: "env(safe-area-inset-top, 0px)",
+            paddingBottom: "env(safe-area-inset-bottom, 0px)",
+          }}
+        >
           {/* Punch-hole camera (desktop frame only) */}
           <div className="absolute left-1/2 top-2 z-[70] hidden h-3.5 w-3.5 -translate-x-1/2 rounded-full bg-black shadow-[inset_0_0_3px_1px_rgba(63,63,70,0.7)] lg:block" />
 
-          {/* Android status bar */}
-          <div className="relative z-20 flex items-center justify-between px-6 pb-1 pt-2.5 text-zinc-300">
-            <span className="text-[12px] font-bold tracking-widest">{time}</span>
-            <span className="flex items-center gap-1.5">
-              <Wifi size={13} strokeWidth={2.5} />
-              <Signal size={13} strokeWidth={2.5} />
-              <BatteryFull size={16} strokeWidth={2} />
-            </span>
-          </div>
+          {/* Android status bar (web only — native shows the real one) */}
+          {!IS_NATIVE && (
+            <div className="relative z-20 flex items-center justify-between px-6 pb-1 pt-2.5 text-zinc-300">
+              <span className="text-[12px] font-bold tracking-widest">{time}</span>
+              <span className="flex items-center gap-1.5">
+                <Wifi size={13} strokeWidth={2.5} />
+                <Signal size={13} strokeWidth={2.5} />
+                <BatteryFull size={16} strokeWidth={2} />
+              </span>
+            </div>
+          )}
 
           {/* Sliding screens: home ⇄ sport */}
           <div className="relative flex-1 overflow-hidden">
@@ -769,10 +787,12 @@ export default function App() {
             </div>
           </div>
 
-          {/* Android gesture pill */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-1.5 z-30 flex justify-center">
-            <div className="h-1 w-24 rounded-full bg-zinc-700" />
-          </div>
+          {/* Android gesture pill (web only — native shows the real one) */}
+          {!IS_NATIVE && (
+            <div className="pointer-events-none absolute inset-x-0 bottom-1.5 z-30 flex justify-center">
+              <div className="h-1 w-24 rounded-full bg-zinc-700" />
+            </div>
+          )}
 
           {/* Sheet: add custom sport */}
           <Sheet

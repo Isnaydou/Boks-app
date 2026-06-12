@@ -16,6 +16,19 @@ Een strakke, mobile-first checklist-app voor vechtsporters: pak je tas in, vink 
 - Vite 7 + Tailwind CSS 4
 - lucide-react icons
 - Zelf-gehoste fonts: Anton (display) en Inter (UI)
+- Capacitor 8 voor de native Android-app (map [`android/`](android/))
+
+## 📱 APK downloaden (Android)
+
+Bij elke push naar `main` bouwt GitHub Actions automatisch een installeerbare APK:
+
+1. Ga naar het tabblad **Actions** van deze repository.
+2. Klik op de meest recente **Build Android APK** run (groene vink).
+3. Scroll naar beneden naar **Artifacts** en download **vechtstijl-apk**.
+4. Pak de zip uit → `app-debug.apk` → zet het bestand op je telefoon en open het.
+5. Sta eenmalig "installeren van onbekende apps" toe en installeer.
+
+Je kunt de build ook handmatig starten: **Actions → Build Android APK → Run workflow**.
 
 ## Development
 
