@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-apk:
-    name: Build VECHTSTIJL APK
+    name: Build Boxing Checklist APK
     runs-on: ubuntu-latest
 
     steps:
@@ -42,6 +42,6 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: vechtstijl-apk
+          name: boxing-checklist-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error

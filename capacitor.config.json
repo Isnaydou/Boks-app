@@ -1,6 +1,6 @@
 {
   "appId": "com.vechtstijl.app",
-  "appName": "VECHTSTIJL",
+  "appName": "Boxing Checklist",
   "webDir": "dist",
   "backgroundColor": "#060607",
   "plugins": {

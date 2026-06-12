@@ -434,10 +434,12 @@ export default function App() {
         <div className="flex items-start justify-between">
           <div>
             <p className="text-[10px] font-extrabold tracking-[0.35em] text-red-500">
-              FIGHT GEAR CHECKLIST
+              FIGHT GEAR
             </p>
-            <h1 className="mt-1 font-display text-[34px] leading-none tracking-wide text-white">
-              VECHT<span className="text-red-600">STIJL</span>
+            <h1 className="mt-1 font-display text-[32px] leading-[0.95] tracking-wide text-white">
+              BOXING
+              <br />
+              <span className="text-red-600">CHECKLIST</span>
             </h1>
             <p className="mt-2 text-[13px] font-medium text-zinc-500">
               Pak je tas in. Geen excuses.

@@ -1,4 +1,4 @@
-# VECHTSTIJL — Fight Gear Checklist
+# Boxing Checklist
 
 Een strakke, mobile-first checklist-app voor vechtsporters: pak je tas in, vink je spullen af en stap klaar de mat op. Ontworpen naar het beeld van een native Android-app op een Samsung Galaxy S24 Ultra — diep zwart, agressieve accenten (bloedrood, goud, neon geel) en vette typografie.
 
@@ -24,7 +24,7 @@ Bij elke push naar `main` bouwt GitHub Actions automatisch een installeerbare AP
 
 1. Ga naar het tabblad **Actions** van deze repository.
 2. Klik op de meest recente **Build Android APK** run (groene vink).
-3. Scroll naar beneden naar **Artifacts** en download **vechtstijl-apk**.
+3. Scroll naar beneden naar **Artifacts** en download **boxing-checklist-apk**.
 4. Pak de zip uit → `app-debug.apk` → zet het bestand op je telefoon en open het.
 5. Sta eenmalig "installeren van onbekende apps" toe en installeer.
 

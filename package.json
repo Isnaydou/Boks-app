@@ -1,9 +1,9 @@
 {
-  "name": "vechtstijl",
+  "name": "boxing-checklist",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "VECHTSTIJL — fight gear checklist app (Boks-app)",
+  "description": "Boxing Checklist — fight gear checklist app (Boks-app)",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

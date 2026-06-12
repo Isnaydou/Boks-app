@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">VECHTSTIJL</string>
-    <string name="title_activity_main">VECHTSTIJL</string>
+    <string name="app_name">Boxing Checklist</string>
+    <string name="title_activity_main">Boxing Checklist</string>
     <string name="package_name">com.vechtstijl.app</string>
     <string name="custom_url_scheme">com.vechtstijl.app</string>
 </resources>
